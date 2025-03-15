@@ -4,10 +4,11 @@ import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FormGroup, Label, Input, Button } from "reactstrap";
-
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/userSlice";
 function Login() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const initialValues = {
     email: "",
     password: "",
@@ -18,24 +19,41 @@ function Login() {
     password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
   });
 
-  const onSubmit = async (values, { setSubmitting }) => {
-    try {
-      const response = await axios.post("http://localhost:5102/api/auth/login", values);
+const onSubmit = async (values, { setSubmitting }) => {
+  try {
+    const response = await axios.post("http://localhost:5102/api/auth/login", values);
 
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        
-        navigate("/");
-      } else {
-        alert("Invalid credentials");
-      }
-    } catch (error) {
-      console.error("Login Error:", error.response?.data);
-      alert(error.response?.data?.message || "Login failed. Please try again.");
-    } finally {
-      setSubmitting(false);
+    console.log("Login Response:", response.data); // Debugging log
+
+    const { token, newUser } = response.data; // Corrected key name (was `NewUser`)
+
+    if (!token || !newUser) {
+      throw new Error("Invalid API response: Missing token or user data");
     }
-  };
+
+    // Store token in local storage
+    localStorage.setItem("token", token);
+
+    // Dispatch user data to Redux
+    dispatch(setUser({
+      id: newUser.id, // Corrected property names
+      name: newUser.name,
+      email: newUser.email,
+      initialBalance: newUser.initialBalance,
+      numberOfGroups: newUser.numberOfGroups,
+      hasSetup: newUser.hasSetup,
+    }));
+
+    // Navigate to homepage after login
+    navigate("/");
+  } catch (error) {
+    console.error("Login Error:", error.response?.data || error.message);
+    alert(error.response?.data?.message || "Login failed. Please try again.");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <div className="registration-page">

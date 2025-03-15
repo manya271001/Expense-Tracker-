@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import { FormGroup, Label, Input, Button } from "reactstrap";
 import './Registration.css'; 
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { setUser } from './redux/userSlice';
 function Registration() {
 const navigate=useNavigate();
+  const dispatch = useDispatch();
 
   const initialValues = {
     name: "",
@@ -25,24 +27,48 @@ const navigate=useNavigate();
       .required("Confirm Password is required"),
   });
 
-  const onSubmit = async (values, { setSubmitting, resetForm }) => {
-    try {
-      const response = await axios.post("http://localhost:5102/api/auth/register", {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      });
+ const onSubmit = async (values, { setSubmitting, resetForm }) => {
+  try {
+    // Step 1: Register User (POST Request)
+    const registerResponse = await axios.post("http://localhost:5102/api/auth/register", {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    });
 
-      alert(response.data.message || "Registration successful!");
-      resetForm();
-    navigate('/login');
-    } catch (error) {
-      console.error("Registration Error:", error.response?.data);
-      alert(error.response?.data.message || "Something went wrong!");
-    } finally {
-      setSubmitting(false);
+    console.log("Registration Response:", registerResponse.data);
+
+    // Ensure the response contains user data and token
+    if (!registerResponse.data.user || !registerResponse.data.token) {
+      throw new Error("Invalid API response: Missing user data or token");
     }
-  };
+
+    // Step 2: Save token in local storage
+    localStorage.setItem("token", registerResponse.data.token);
+
+    // Step 3: Dispatch User Data to Redux Store
+    const { user } = registerResponse.data;
+
+    dispatch(setUser({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      initialBalance: user.initialBalance,
+      numberOfGroups: user.numberOfGroups,
+      hasSetup: user.hasSetup,
+    }));
+
+    // Step 4: Navigate to home page
+    navigate('/');
+  } catch (error) {
+    console.error("Registration Error:", error.response?.data || error.message);
+    alert(error.response?.data?.message || "Something went wrong!");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
+
   function loginbtn(){
     navigate('/login');
   }

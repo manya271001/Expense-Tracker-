@@ -1,12 +1,34 @@
 import React from "react";
-import './App.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { FaUser } from "react-icons/fa"; 
+import { logout } from "./redux/userSlice"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { FaUser } from "react-icons/fa"; 
-
+import "./App.css";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  // Get user data from Redux store
+  const user = useSelector((state) => state.user);
+
+  // Logout Function
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("token"); // Clear token
+    navigate("/"); // Redirect to login
+  };
+
+  // Registration Function
+  const handleRegistration = () => {
+    navigate("/register");
+  };
+  // Login Function
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -42,43 +64,66 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* Dropdown Menu */}
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="userDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <FaUser className="me-1" /> Account
-              </a>
-              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li>
-                  <Link className="dropdown-item" to="/about">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/login">
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/register">
-                    Register
-                  </Link>
-                </li>
-              </ul>
-            </li>
-
-            {/* Logout Button */}
-            <li className="nav-item">
-              <Link className="nav-link btn btn-danger text-white ms-2 nav-btn" to="/logout">
-                Logout
-              </Link>
-            </li>
+            {/* If user is logged in, show user name and logout */}
+            {user?.id ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <FaUser className="me-1" /> {user.name}
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li>
+                    <Link className="dropdown-item" to="/about">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <>
+                {/* If no user is logged in, show Login/Register */}
+               <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <FaUser className="me-1" /> Account
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li>
+                    <Link className="dropdown-item" to="/about">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={handleRegistration}>
+                      Register
+                    </button>
+                  </li>
+                     <li>
+                    <button className="dropdown-item" onClick={handleLogin}>
+                      Login
+                    </button>
+                  </li>
+                </ul>
+              </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
