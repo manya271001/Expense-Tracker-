@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import './App.css';
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { FaUser } from "react-icons/fa"; 
+
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         {/* Brand Logo */}
-        <a className="navbar-brand name" to="/" style={{ color: "rgb(13, 101, 113)"}}>
-          Split<span color="red" >IT</span>
-        </a>
+        <Link className="navbar-brand name" to="/" style={{ color: "rgb(13, 101, 113)" }}>
+          Split<span style={{ color: "red" }}>IT</span>
+        </Link>
 
         {/* Navbar Toggle for Mobile */}
         <button
@@ -26,23 +28,56 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navbar as */}
-        <div className="collapse navbar-collapse navbar" id="navbarNav">
-          <ul className="navbar-nav ms-auto navbarlist">
+        {/* Navbar Items */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-a element">
+              <Link className="nav-link" to="/dashboard">
                 Dashboard
-              </a>
+              </Link>
             </li>
-            <li className="nav-item element">
-              <a className="nav-a element" to="">
+            <li className="nav-item">
+              <Link className="nav-link" to="/groups">
                 Groups
-              </a>
+              </Link>
             </li>
-            <li className="nav-item nav-btn">
-              <a className="nav-a btn text-white nav-btn" to="">
-                Logout
+
+            {/* Dropdown Menu */}
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <FaUser className="me-1" /> Account
               </a>
+              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li>
+                  <Link className="dropdown-item" to="/about">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/login">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/register">
+                    Register
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            {/* Logout Button */}
+            <li className="nav-item">
+              <Link className="nav-link btn btn-danger text-white ms-2 nav-btn" to="/logout">
+                Logout
+              </Link>
             </li>
           </ul>
         </div>

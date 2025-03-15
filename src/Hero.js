@@ -1,9 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Hero.css"; 
+import AboutSection from "./About";
+import ContactPage from "./ContactPage";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+
 
 const HeroSection = () => {
   return (
+    <>
+    <Navbar/>
     <div
       id="heroCarousel"
       className="carousel slide"
@@ -42,6 +49,10 @@ const HeroSection = () => {
         </div>
       </div>
     </div>
+    <AboutSection/>
+    <ContactPage/>
+    <Footer/>
+    </>
   );
 };
 
