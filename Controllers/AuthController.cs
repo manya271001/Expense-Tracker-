@@ -36,7 +36,7 @@ namespace server.Controllers
                     return Conflict(new { message = "Email already exists" });
 
                 var hashedPassword = PasswordHasher.HashPassword(model.Password);
-                var NewUser = new NewUser
+                var newUser = new NewUser
                 {
                     Email = model.Email,
                     Name = model.Name,
@@ -46,10 +46,27 @@ namespace server.Controllers
                     HasSetup = false    // Default
                 };
 
-                _context.NewUsers.Add(NewUser);
+                _context.NewUsers.Add(newUser);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(Register), new { message = "NewUser registered successfully!" });
+                // ?? Generate JWT Token for the new user
+                var token = GenerateJwtToken(newUser);
+
+                // ?? Return user details + token
+                return CreatedAtAction(nameof(Register), new
+                {
+                    message = "NewUser registered successfully!",
+                    user = new
+                    {
+                        newUser.Id,
+                        newUser.Name,
+                        newUser.Email,
+                        newUser.InitialBalance,
+                        newUser.NumberOfGroups,
+                        newUser.HasSetup
+                    },
+                    token
+                });
             }
             catch (Exception ex)
             {
@@ -60,8 +77,8 @@ namespace server.Controllers
                     stackTrace = ex.StackTrace
                 });
             }
-
         }
+
 
 
         // **LOGIN NewUser**
@@ -136,6 +153,23 @@ namespace server.Controllers
                 NewUser.HasSetup
             });
 
+        }
+
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            var user = await _context.NewUsers.FindAsync(id);
+            if (user == null) return NotFound(new { message = "User not found" });
+
+            return Ok(new
+            {
+                user.Id,
+                user.Name,
+                user.Email,
+                user.InitialBalance,
+                user.NumberOfGroups,
+                user.HasSetup
+            });
         }
 
 
