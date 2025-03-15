@@ -1,0 +1,11 @@
+# Ignore the Visual Studio folder
+.vs/
+
+# Ignore node_modules (for JavaScript projects)
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore environment variables
+.env
