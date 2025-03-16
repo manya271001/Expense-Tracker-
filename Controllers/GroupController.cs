@@ -25,7 +25,6 @@ namespace server.Controllers
         [HttpPost("createGroup")]
         public async Task<IActionResult> CreateGroup([FromBody] CreateGroupModel model)
         {
-            // Validate the request model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -33,14 +32,12 @@ namespace server.Controllers
 
             try
             {
-                // Find the creator of the group
                 var user = await _context.NewUsers.FindAsync(model.CreatedBy);
                 if (user == null)
                     return BadRequest(new { message = "User not found" });
 
                 // Create a new group
                 var group = new server.Models.Group
-
                 {
                     Name = model.Name,
                     CreatedBy = model.CreatedBy,
@@ -51,28 +48,38 @@ namespace server.Controllers
                     Members = new List<UserGroup>()
                 };
 
-                // Optimize by fetching all members in one query
+                // Fetch all valid members from DB
                 var members = await _context.NewUsers
                                             .Where(u => model.MemberIds.Contains(u.Id))
                                             .ToListAsync();
 
-                // Check if all member ids are valid
+                // Ensure no duplicate UserGroup entries
+                var existingUserGroupIds = new HashSet<int>();
+
                 foreach (var member in members)
                 {
-                    group.Members.Add(new UserGroup { UserId = member.Id, Group = group });
+                    if (!existingUserGroupIds.Contains(member.Id))
+                    {
+                        group.Members.Add(new UserGroup { UserId = member.Id, Group = group });
+                        existingUserGroupIds.Add(member.Id);
+                    }
                 }
 
-                // If there are any invalid member ids
+                // Ensure creator is added only once
+                if (!existingUserGroupIds.Contains(model.CreatedBy))
+                {
+                    group.Members.Add(new UserGroup { UserId = model.CreatedBy, Group = group });
+                }
+
+                // Check if all members were found
                 if (members.Count != model.MemberIds.Count)
                 {
                     return BadRequest(new { message = "Some member(s) not found" });
                 }
 
-                // Add group to the context
                 _context.Groups.Add(group);
                 await _context.SaveChangesAsync();
 
-                // Return success response with the group data
                 return Ok(new
                 {
                     message = "Group created successfully!",
@@ -92,9 +99,23 @@ namespace server.Controllers
             }
             catch (Exception ex)
             {
-                // Log the error (you can add logging here)
                 return StatusCode(500, new { message = "An error occurred while creating the group.", error = ex.Message });
             }
         }
+
+        // Endpoint to get user groups
+        [HttpGet("userGroups/{userId}")]
+        public async Task<IActionResult> GetUserGroups(int userId)
+        {
+            var userGroups = await _context.UserGroups
+                .Where(ug => ug.UserId == userId)
+                .Select(ug => ug.GroupId)
+                .Distinct()
+                .ToListAsync();
+
+            Console.WriteLine($"User {userId} is in {userGroups.Count} groups."); 
+            return Ok(new { numberOfGroups = userGroups.Count });
+        }
+
     }
 }
