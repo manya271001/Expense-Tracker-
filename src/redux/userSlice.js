@@ -5,7 +5,6 @@ const initialState = {
   name: "",
   email: "",
   initialBalance: 0,
-  numberOfGroups: 0,
   hasSetup: false,
 };
 
@@ -14,10 +13,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      return { ...action.payload }; // Set user data from API response
+      return { ...state, ...action.payload };
     },
     logout: () => {
-      return { ...initialState }; // Reset state on logout
+      return { ...initialState };
     },
   },
 });
