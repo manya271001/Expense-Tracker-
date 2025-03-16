@@ -47,7 +47,7 @@ namespace server.Controllers
                     MaxMembers = model.MaxMembers,
                     TotalBalance = model.TotalBalance,
                     IsActive = model.IsActive,
-                    Discription = model.Discription,
+                    Description = model.Description,
                     Members = new List<UserGroup>()
                 };
 
@@ -84,7 +84,7 @@ namespace server.Controllers
                         group.MaxMembers,
                         group.TotalBalance,
                         group.IsActive,
-                        group.Discription,
+                        group.Description,
                         group.CreatedAt,
                         Members = group.Members.Select(m => new { m.UserId })
                     }

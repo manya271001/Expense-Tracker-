@@ -8,6 +8,6 @@
         public int MaxMembers { get; set; }
         public decimal TotalBalance { get; set; }
         public bool IsActive { get; set; }
-        public string Discription { get; internal set; }
+        public string? Description { get; internal set; }
     }
 }

@@ -28,6 +28,6 @@ namespace server.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        public string? Discription { get; set; }  
+        public string? Description { get; set; }  
     }
 }
