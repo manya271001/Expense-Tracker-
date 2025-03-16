@@ -75,7 +75,7 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <FaUser className="me-1" /> {user.name}
+                  <FaUser className="me-1" style={{color:"green"}} /> {user.name}
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                   <li>
@@ -87,6 +87,9 @@ const Navbar = () => {
                     <button className="dropdown-item" onClick={handleLogout}>
                       Logout
                     </button>
+                  </li>
+                  <li>
+                    <p className="text-danger dropdown-item">UserId:{user.id}</p>
                   </li>
                 </ul>
               </li>
