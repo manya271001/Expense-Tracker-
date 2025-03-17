@@ -59,6 +59,22 @@
   },
   {
     "ContainingType": "server.Controllers.GroupController",
+    "Method": "GetCreatedGroups",
+    "RelativePath": "api/group/createdBy/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
     "Method": "CreateGroup",
     "RelativePath": "api/group/createGroup",
     "HttpMethod": "POST",
@@ -75,6 +91,27 @@
   },
   {
     "ContainingType": "server.Controllers.GroupController",
+    "Method": "DeleteGroup",
+    "RelativePath": "api/group/deleteGroup/{groupId}/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
     "Method": "GetUserGroups",
     "RelativePath": "api/group/userGroups/{userId}",
     "HttpMethod": "GET",
@@ -84,6 +121,70 @@
       {
         "Name": "userId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
+    "Method": "GetUserGroupsWithDetails",
+    "RelativePath": "api/group/userGroups/details/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.InvitationController",
+    "Method": "GetPendingInvitations",
+    "RelativePath": "api/invitations/pending/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.InvitationController",
+    "Method": "RespondToInvitation",
+    "RelativePath": "api/invitations/respond",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "server.Models.RespondToInvitationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.InvitationController",
+    "Method": "SendInvitation",
+    "RelativePath": "api/invitations/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "server.Models.SendInvitationRequest",
         "IsRequired": true
       }
     ],

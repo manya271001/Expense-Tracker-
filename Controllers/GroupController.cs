@@ -117,5 +117,76 @@ namespace server.Controllers
             return Ok(new { numberOfGroups = userGroups.Count });
         }
 
+        [HttpGet("userGroups/details/{userId}")]
+        public async Task<IActionResult> GetUserGroupsWithDetails(int userId)
+        {
+            var userGroups = await _context.UserGroups
+                .Where(ug => ug.UserId == userId)
+                .Include(ug => ug.Group) // Include group details
+                .Select(ug => new
+                {
+                    ug.Group.Id,
+                    ug.Group.Name,
+                    ug.Group.MaxMembers,
+                    ug.Group.TotalBalance,
+                    ug.Group.IsActive,
+                    ug.Group.Description,
+                    ug.Group.CreatedAt
+                })
+                .ToListAsync();
+
+            if (!userGroups.Any())
+            {
+                return NotFound(new { message = "No groups found for this user." });
+            }
+
+            return Ok(userGroups);
+        }
+
+
+        // to get all the table creted by user id
+        [HttpGet("createdBy/{userId}")]
+        public async Task<IActionResult> GetCreatedGroups(int userId)
+        {
+            var groups = await _context.Groups
+                .Where(g => g.CreatedBy == userId)
+                .Select(g => new
+                {
+                    g.Id,
+                    g.Name,
+                    g.MaxMembers,
+                    g.TotalBalance,
+                    g.IsActive,
+                    g.Description,
+                    g.CreatedAt
+                })
+                .ToListAsync();
+
+            return Ok(groups);
+        }
+
+        [HttpDelete("deleteGroup/{groupId}/{userId}")]
+        public async Task<IActionResult> DeleteGroup(int groupId, int userId)
+        {
+            var group = await _context.Groups.FindAsync(groupId);
+
+            if (group == null)
+            {
+                return NotFound(new { message = "Group not found" });
+            }
+
+            //  Ensure only the creator can delete
+            if (group.CreatedBy != userId)
+            {
+                return Unauthorized(new { message = "You are not authorized to delete this group." });
+            }
+
+            _context.Groups.Remove(group);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Group deleted successfully!" });
+        }
+
+
     }
 }

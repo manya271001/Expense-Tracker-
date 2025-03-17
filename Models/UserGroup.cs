@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace server.Models
 {
@@ -13,6 +14,8 @@ namespace server.Models
         [Key, Column(Order = 1)]
         public int GroupId { get; set; }
         [Required]
+
+        [JsonIgnore]
         public  Group Group { get; set; }
     }
 }

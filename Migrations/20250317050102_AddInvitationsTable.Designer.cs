@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using server.Data;
 
@@ -11,9 +12,11 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(FullStackDbContext))]
-    partial class FullStackDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250317050102_AddInvitationsTable")]
+    partial class AddInvitationsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,40 +59,6 @@ namespace server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("server.Models.Invitation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InvitedUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("InvitedUserId");
-
-                    b.ToTable("Invitations");
                 });
 
             modelBuilder.Entity("server.Models.NewUser", b =>
@@ -146,25 +115,6 @@ namespace server.Migrations
                     b.ToTable("UserGroups");
                 });
 
-            modelBuilder.Entity("server.Models.Invitation", b =>
-                {
-                    b.HasOne("server.Models.Group", "Group")
-                        .WithMany("Invitations")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("server.Models.NewUser", "User")
-                        .WithMany("Invitations")
-                        .HasForeignKey("InvitedUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("server.Models.UserGroup", b =>
                 {
                     b.HasOne("server.Models.Group", "Group")
@@ -186,14 +136,7 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.Group", b =>
                 {
-                    b.Navigation("Invitations");
-
                     b.Navigation("Members");
-                });
-
-            modelBuilder.Entity("server.Models.NewUser", b =>
-                {
-                    b.Navigation("Invitations");
                 });
 #pragma warning restore 612, 618
         }

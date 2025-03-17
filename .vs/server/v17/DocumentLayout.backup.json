@@ -3,36 +3,56 @@
   "WorkspaceRootPath": "D:\\FullStackApp\\server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\invitationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\invitationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\invitation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\invitation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\newuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\newuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\creategroupmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\creategroupmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\sendinvitationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\sendinvitationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\data\\fullstackdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:data\\fullstackdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\usergroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\usergroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\newuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\newuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\respondtoinvitationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\respondtoinvitationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\creategroupmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:models\\creategroupmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65067BB3-6B54-44EC-8593-1FF04B1C8724}|server.csproj|d:\\fullstackapp\\server\\models\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,42 +101,46 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\FullStackApp\\server\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "D:\\FullStackApp\\server\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAA8wCwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T09:53:15.679Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GroupController.cs",
-              "DocumentMoniker": "D:\\FullStackApp\\server\\Controllers\\GroupController.cs",
-              "RelativeDocumentMoniker": "Controllers\\GroupController.cs",
-              "ToolTip": "D:\\FullStackApp\\server\\Controllers\\GroupController.cs",
-              "RelativeToolTip": "Controllers\\GroupController.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAqwGgAAAAAAAAAAAAAAA==",
+              "Title": "InvitationController.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Controllers\\InvitationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InvitationController.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Controllers\\InvitationController.cs",
+              "RelativeToolTip": "Controllers\\InvitationController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAA1wD0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T22:29:28.835Z",
+              "WhenOpened": "2025-03-17T05:20:28.106Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Group.cs",
-              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\Group.cs",
-              "RelativeDocumentMoniker": "Models\\Group.cs",
-              "ToolTip": "D:\\FullStackApp\\server\\Models\\Group.cs",
-              "RelativeToolTip": "Models\\Group.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAABBwCEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Invitation.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\Invitation.cs",
+              "RelativeDocumentMoniker": "Models\\Invitation.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Models\\Invitation.cs",
+              "RelativeToolTip": "Models\\Invitation.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T21:48:08.271Z",
+              "WhenOpened": "2025-03-17T04:51:25.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SendInvitationRequest.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\SendInvitationRequest.cs",
+              "RelativeDocumentMoniker": "Models\\SendInvitationRequest.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Models\\SendInvitationRequest.cs",
+              "RelativeToolTip": "Models\\SendInvitationRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T08:47:08.904Z",
               "EditorCaption": ""
             },
             {
@@ -127,14 +151,102 @@
               "RelativeDocumentMoniker": "Data\\FullStackDbContext.cs",
               "ToolTip": "D:\\FullStackApp\\server\\Data\\FullStackDbContext.cs",
               "RelativeToolTip": "Data\\FullStackDbContext.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-14T16:24:01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "NewUser.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\NewUser.cs",
+              "RelativeDocumentMoniker": "Models\\NewUser.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Models\\NewUser.cs",
+              "RelativeToolTip": "Models\\NewUser.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAcwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T16:57:13.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Group.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\Group.cs",
+              "RelativeDocumentMoniker": "Models\\Group.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Models\\Group.cs",
+              "RelativeToolTip": "Models\\Group.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAqwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T21:48:08.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GroupController.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Controllers\\GroupController.cs",
+              "RelativeToolTip": "Controllers\\GroupController.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAA8wJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T22:29:28.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserGroup.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\UserGroup.cs",
+              "RelativeDocumentMoniker": "Models\\UserGroup.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Models\\UserGroup.cs",
+              "RelativeToolTip": "Models\\UserGroup.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAA2wBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T21:52:03.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RespondToInvitationRequest.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\RespondToInvitationRequest.cs",
+              "RelativeDocumentMoniker": "Models\\RespondToInvitationRequest.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Models\\RespondToInvitationRequest.cs",
+              "RelativeToolTip": "Models\\RespondToInvitationRequest.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAABHwAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T06:31:01.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAzwCIAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T07:00:53.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\FullStackApp\\server\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "D:\\FullStackApp\\server\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA8wCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T09:53:15.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "CreateGroupModel.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\CreateGroupModel.cs",
               "RelativeDocumentMoniker": "Models\\CreateGroupModel.cs",
@@ -142,12 +254,11 @@
               "RelativeToolTip": "Models\\CreateGroupModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T22:24:26.195Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T22:24:26.195Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -159,31 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserGroup.cs",
-              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\UserGroup.cs",
-              "RelativeDocumentMoniker": "Models\\UserGroup.cs",
-              "ToolTip": "D:\\FullStackApp\\server\\Models\\UserGroup.cs",
-              "RelativeToolTip": "Models\\UserGroup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T21:52:03.995Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "NewUser.cs",
-              "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\NewUser.cs",
-              "RelativeDocumentMoniker": "Models\\NewUser.cs",
-              "ToolTip": "D:\\FullStackApp\\server\\Models\\NewUser.cs",
-              "RelativeToolTip": "Models\\NewUser.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T16:57:13.438Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "RegisterModel.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\RegisterModel.cs",
               "RelativeDocumentMoniker": "Models\\RegisterModel.cs",
@@ -195,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -207,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -219,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "server.http",
               "DocumentMoniker": "D:\\FullStackApp\\server\\server.http",
               "RelativeDocumentMoniker": "server.http",
@@ -231,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "ErrorHandlingMiddleware.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Middleware\\ErrorHandlingMiddleware.cs",
               "RelativeDocumentMoniker": "Middleware\\ErrorHandlingMiddleware.cs",
@@ -243,7 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\FullStackApp\\server\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -255,7 +342,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "server.csproj",
               "DocumentMoniker": "D:\\FullStackApp\\server\\server.csproj",
               "RelativeDocumentMoniker": "server.csproj",
@@ -267,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "LoginModel.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Models\\LoginModel.cs",
               "RelativeDocumentMoniker": "Models\\LoginModel.cs",
@@ -279,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "PasswordHasher.cs",
               "DocumentMoniker": "D:\\FullStackApp\\server\\Services\\PasswordHasher.cs",
               "RelativeDocumentMoniker": "Services\\PasswordHasher.cs",

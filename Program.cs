@@ -5,6 +5,7 @@ using server.Data;
 using server.Middleware;
 using server.Services;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace server
 {
@@ -25,6 +26,12 @@ namespace server
                     policy => policy.AllowAnyOrigin()
                                     .AllowAnyMethod()
                                     .AllowAnyHeader());
+            });
+
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                options.JsonSerializerOptions.WriteIndented = true;
             });
 
             // Add Authentication using JWT

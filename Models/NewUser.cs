@@ -24,5 +24,8 @@ namespace server.Models
         public decimal InitialBalance { get; set; } = 0;
         public int NumberOfGroups { get; set; } = 0;
         public bool HasSetup { get; set; } = false;
+
+        public List<Invitation> Invitations { get; set; } = new List<Invitation>();
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace server.Models
 {
@@ -28,6 +29,9 @@ namespace server.Models
         [Required]
         public bool IsActive { get; set; } = true;
 
-        public string? Description { get; set; }  
+        public string? Description { get; set; }
+
+        [JsonIgnore]
+        public List<Invitation> Invitations { get; set; } = new List<Invitation>();
     }
 }
