@@ -7,27 +7,28 @@ import { useNavigate } from "react-router-dom";
 import AddGroup from "./AddGroup";
 import { Modal, Button } from "react-bootstrap";
 import { fetchGroups } from "./redux/groupSlice ";
+import DeleteGroup from "./DeleteGroup";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // Separate modal state
   const [showAuthPopup, setShowAuthPopup] = useState(false);
   const [actionType, setActionType] = useState(""); // Track which action user tried
 
   const user = useSelector((state) => state.user);
   const userId = useSelector((state) => state.user.id);
-  const { groupCount } = useSelector((state) => state.groups);  
- useEffect(() => {
+  const { groupCount } = useSelector((state) => state.groups);
+
+  useEffect(() => {
     if (userId) {
       console.log("Fetching groups for user:", userId);
       dispatch(fetchGroups(userId));
     }
-  }, [dispatch]);
-  console.log("Redux Group Count:", groupCount); 
+  }, [dispatch, userId]);
 
   const numberOfGroups = useSelector((state) => state.groups.groupCount);
-  console.log("Number of Groups in Redux State:", numberOfGroups);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -50,25 +51,70 @@ const Dashboard = () => {
     fetchUserData();
   }, [dispatch, userId]);
 
-  //  Function to handle "Add Group" button click
+  // Function to handle "Add Group" button click
   const handleAddGroupClick = () => {
     if (!userId) {
       setActionType("create a group");
       setShowAuthPopup(true);
     } else {
-      setShowModal(true);
+      setShowAddModal(true);
     }
   };
 
-  //  Function to handle "Remove Group" button click
-  const handleRemoveGroupClick = () => {
-    if (!userId) {
-      setActionType("remove a group");
-      setShowAuthPopup(true);
+const [userGroups, setUserGroups] = useState([]); // Store groups created by the user
+
+const handleRemoveGroupClick = async () => {
+  if (!userId) {
+    setActionType("remove a group");
+    setShowAuthPopup(true);
+    return;
+  }
+
+  try {
+    const response = await axios.get(
+      `http://localhost:5102/api/group/createdBy/${userId}`
+    );
+
+    if (response.data?.$values) {
+      setUserGroups(response.data.$values); // Extract actual group list
     } else {
-      console.log("Remove group functionality will go here.");
+      setUserGroups([]);
     }
-  };
+
+    setShowDeleteModal(true);
+  } catch (error) {
+    console.error("Error fetching user's groups:", error);
+  }
+};
+
+const handleDeleteGroup = async (groupId) => {
+  if (!groupId) return; // Prevent invalid deletes
+
+  try {
+    const response = await axios.delete(
+      `http://localhost:5102/api/group/deleteGroup/${groupId}/${userId}`
+    );
+
+    if (response.status === 200) {
+      console.log(`Group ${groupId} deleted successfully`);
+      
+      // Fetch updated groups list
+      const updatedGroups = userGroups.filter((group) => group.id !== groupId);
+      setUserGroups(updatedGroups); // Update UI
+
+      if (updatedGroups.length === 0) {
+        setShowDeleteModal(false); // Close modal if no groups left
+      }
+    } else {
+      console.error("Unexpected response:", response);
+    }
+  } catch (error) {
+    console.error("Error deleting group:", error);
+  }
+};
+
+
+
 
   return (
     <div className="container py-4">
@@ -106,10 +152,18 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {/*  Add Group Modal */}
-      <AddGroup show={showModal} handleClose={() => setShowModal(false)} />
+      {/* Add Group Modal */}
+      <AddGroup show={showAddModal} handleClose={() => setShowAddModal(false)}  />
 
-      {/*  Authentication Required Popup */}
+      {/* Delete Group Modal */}
+      <DeleteGroup 
+  show={showDeleteModal} 
+  handleClose={() => setShowDeleteModal(false)} 
+  groups={userGroups} 
+  handleDelete={handleDeleteGroup} 
+/>
+
+      {/* Authentication Required Popup */}
       <Modal show={showAuthPopup} onHide={() => setShowAuthPopup(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Authentication Required</Modal.Title>

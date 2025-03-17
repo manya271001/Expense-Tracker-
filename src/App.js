@@ -7,6 +7,10 @@ import AboutSection from "./About";
 import ContactPage from "./ContactPage";
 import Dashboard from "./Dashboard";
 import AddGroup from "./AddGroup";
+import Groups from "./Groups";
+import InviteModal from "./InviteModal";
+import Invitations from "./Invitations";
+
 
 function App() {
   return (
@@ -22,7 +26,10 @@ function App() {
           <Route path="/about" element={<AboutSection />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/dashboard" element={<Dashboard/>} />
+          <Route path="/groups" element={<Groups/>} />
           <Route path="/addgroup" element={<AddGroup/>} />
+          <Route path="/invite" element={<InviteModal/>} />
+          <Route path="/Invitations" element={<Invitations/>} />
         </Route>
       </Routes>
     
