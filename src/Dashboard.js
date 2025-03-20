@@ -8,14 +8,18 @@ import AddGroup from "./AddGroup";
 import { Modal, Button } from "react-bootstrap";
 import { fetchGroups } from "./redux/groupSlice ";
 import DeleteGroup from "./DeleteGroup";
+import './App.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showAddModal, setShowAddModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // Separate modal state
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAuthPopup, setShowAuthPopup] = useState(false);
-  const [actionType, setActionType] = useState(""); // Track which action user tried
+  const [actionType, setActionType] = useState("");
+
+  const [totalOwed, setTotalOwed] = useState(0);
+  const [totalReceivable, setTotalReceivable] = useState(0);
 
   const user = useSelector((state) => state.user);
   const userId = useSelector((state) => state.user.id);
@@ -23,12 +27,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (userId) {
-      console.log("Fetching groups for user:", userId);
       dispatch(fetchGroups(userId));
     }
   }, [dispatch, userId]);
-
-  const numberOfGroups = useSelector((state) => state.groups.groupCount);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -51,7 +52,24 @@ const Dashboard = () => {
     fetchUserData();
   }, [dispatch, userId]);
 
-  // Function to handle "Add Group" button click
+  useEffect(() => {
+    const fetchUserBalances = async () => {
+      if (!userId) return;
+
+      try {
+        const response = await axios.get(
+          `http://localhost:5102/api/expenses/user/${userId}/balances`
+        );
+        setTotalOwed(response.data.totalOwed);
+        setTotalReceivable(response.data.totalReceivable);
+      } catch (error) {
+        console.error("Error fetching user balances:", error);
+      }
+    };
+
+    fetchUserBalances();
+  }, [userId]);
+
   const handleAddGroupClick = () => {
     if (!userId) {
       setActionType("create a group");
@@ -61,107 +79,100 @@ const Dashboard = () => {
     }
   };
 
-const [userGroups, setUserGroups] = useState([]); // Store groups created by the user
+  const [userGroups, setUserGroups] = useState([]);
 
-const handleRemoveGroupClick = async () => {
-  if (!userId) {
-    setActionType("remove a group");
-    setShowAuthPopup(true);
-    return;
-  }
-
-  try {
-    const response = await axios.get(
-      `http://localhost:5102/api/group/createdBy/${userId}`
-    );
-
-    if (response.data?.$values) {
-      setUserGroups(response.data.$values); // Extract actual group list
-    } else {
-      setUserGroups([]);
+  const handleRemoveGroupClick = async () => {
+    if (!userId) {
+      setActionType("remove a group");
+      setShowAuthPopup(true);
+      return;
     }
 
-    setShowDeleteModal(true);
-  } catch (error) {
-    console.error("Error fetching user's groups:", error);
-  }
-};
+    try {
+      const response = await axios.get(
+        `http://localhost:5102/api/group/createdBy/${userId}`
+      );
 
-const handleDeleteGroup = async (groupId) => {
-  if (!groupId) return; // Prevent invalid deletes
+      setUserGroups(response.data?.$values || []);
+      setShowDeleteModal(true);
+    } catch (error) {
+      console.error("Error fetching user's groups:", error);
+    }
+  };
 
-  try {
-    const response = await axios.delete(
-      `http://localhost:5102/api/group/deleteGroup/${groupId}/${userId}`
-    );
+  const handleDeleteGroup = async (groupId) => {
+    if (!groupId) return;
 
-    if (response.status === 200) {
-      console.log(`Group ${groupId} deleted successfully`);
-      
-      // Fetch updated groups list
-      const updatedGroups = userGroups.filter((group) => group.id !== groupId);
-      setUserGroups(updatedGroups); // Update UI
+    try {
+      const response = await axios.delete(
+        `http://localhost:5102/api/group/deleteGroup/${groupId}/${userId}`
+      );
 
-      if (updatedGroups.length === 0) {
-        setShowDeleteModal(false); // Close modal if no groups left
+      if (response.status === 200) {
+        setUserGroups((prevGroups) =>
+          prevGroups.filter((group) => group.id !== groupId)
+        );
+
+        if (userGroups.length === 1) setShowDeleteModal(false);
       }
-    } else {
-      console.error("Unexpected response:", response);
+    } catch (error) {
+      console.error("Error deleting group:", error);
     }
-  } catch (error) {
-    console.error("Error deleting group:", error);
-  }
-};
-
-
-
+  };
 
   return (
     <div className="container py-4">
-      <div className="text-white text-center p-4 rounded" style={{ backgroundColor: "paleturquoise", fontStyle: "italic" }}>
-        <h2 className="mb-0">Hello, {userId ? user.name : "Guest"} 👋</h2>
+      <div
+        className="text-white text-center p-4 rounded"
+        style={{ backgroundColor: "paleturquoise", fontStyle: "italic" }}
+      >
+        <h2 className="mb-0" style={{ background: "linear-gradient(135deg, #f093fb, #f5576c)"}}>Hello, {userId ? user.name : "Guest"} 👋</h2>
       </div>
 
-      <div className="row mt-4">
-        <div className="col-md-4">
-          <div className="bg-danger text-white p-4 rounded text-center">
-            <p className="fw-bold">Amount Lent</p>
-            <p className="fs-4">₹{user.initialBalance}</p>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="bg-primary text-white p-4 rounded text-center">
-            <p className="fw-bold">Amount Owed</p>
-            <p className="fs-4">₹{user.initialBalance}</p>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="bg-success text-white p-4 rounded text-center">
-            <p className="fw-bold">Groups Joined</p>
-            <p className="fs-4">{numberOfGroups}</p>
-          </div>
-        </div>
-      </div>
+<div className="row mt-4">
+  <div className="col-md-4">
+    <div className="box amount-lent text-white p-4 rounded text-center">
+      <p className="fw-bold">Amount Lent</p>
+      <p className="fs-4">₹{totalReceivable}</p>
+    </div>
+  </div>
+  <div className="col-md-4">
+    <div className="box amount-owed text-white p-4 rounded text-center">
+      <p className="fw-bold">Amount Owed</p>
+      <p className="fs-4">₹{totalOwed}</p>
+    </div>
+  </div>
+  <div className="col-md-4">
+    <div className="box groups-joined text-white p-4 rounded text-center">
+      <p className="fw-bold">Groups Joined</p>
+      <p className="fs-4">{groupCount}</p>
+    </div>
+  </div>
+</div>
+
 
       <div className="d-flex justify-content-center gap-3 mt-4">
         <button className="btn btn-primary" onClick={handleAddGroupClick}>
           Add Group
         </button>
-        <button className="btn btn-outline-secondary px-4 py-2" onClick={handleRemoveGroupClick}>
+        <button
+          className="btn btn-outline-secondary px-4 py-2"
+          onClick={handleRemoveGroupClick}
+        >
           Remove Group
         </button>
       </div>
 
       {/* Add Group Modal */}
-      <AddGroup show={showAddModal} handleClose={() => setShowAddModal(false)}  />
+      <AddGroup show={showAddModal} handleClose={() => setShowAddModal(false)} />
 
       {/* Delete Group Modal */}
-      <DeleteGroup 
-  show={showDeleteModal} 
-  handleClose={() => setShowDeleteModal(false)} 
-  groups={userGroups} 
-  handleDelete={handleDeleteGroup} 
-/>
+      <DeleteGroup
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        groups={userGroups}
+        handleDelete={handleDeleteGroup}
+      />
 
       {/* Authentication Required Popup */}
       <Modal show={showAuthPopup} onHide={() => setShowAuthPopup(false)} centered>

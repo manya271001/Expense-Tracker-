@@ -10,6 +10,9 @@ import AddGroup from "./AddGroup";
 import Groups from "./Groups";
 import InviteModal from "./InviteModal";
 import Invitations from "./Invitations";
+import ExpenseTracker from "./ExpenseTracker";
+import ManageExpense from "./ManageExpense";
+import SettleComponent from "./Settlement";
 
 
 function App() {
@@ -20,6 +23,7 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HeroSection />} />
+          
 
         {/* Routes with Navbar & Footer */}
         <Route element={<Layout />}>
@@ -30,6 +34,8 @@ function App() {
           <Route path="/addgroup" element={<AddGroup/>} />
           <Route path="/invite" element={<InviteModal/>} />
           <Route path="/Invitations" element={<Invitations/>} />
+          <Route path="/expenseTracker" element={<ExpenseTracker/>}/>
+          <Route path="/expenseManager/:groupId" element={<ManageExpense />} />
         </Route>
       </Routes>
     

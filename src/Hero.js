@@ -15,7 +15,7 @@ const HeroSection = () => {
       id="heroCarousel"
       className="carousel slide"
       data-bs-ride="carousel"
-      data-bs-interval="3000"
+      data-bs-interval="2000"
     >
       <div className="carousel-indicators">
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" className="active"></button>

@@ -42,6 +42,31 @@ function Groups() {
     }
   };
 
+  const handleLeaveGroup = async (groupId) => {
+  if (!groupId) return;
+
+  const isConfirmed = window.confirm("Are you sure you want to leave this group?");
+  if (!isConfirmed) return; // If the user cancels, do nothing
+
+  try {
+    const response = await axios.delete(
+      `http://localhost:5102/api/group/leaveGroup/${groupId}/${userId}`
+    );
+
+    if (response.status === 200) {
+      // Remove group from the joinedGroups list
+      setJoinedGroups((prevGroups) => prevGroups.filter((group) => group.id !== groupId));
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      alert(error.response.data.message || "Unable to leave the group.");
+    } else {
+      console.error("Error leaving group:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
+  }
+};
+
   return (
     <div className="groups-container">
       <h2 className="heading">Groups Created by You</h2>
@@ -75,7 +100,10 @@ function Groups() {
                     onClick={()=>navigate('/invite' , { state: { groupId: group.id } })} >
                     Send Invite
                   </button>
-                </td>
+                  </td>
+                  
+                    
+                
               </tr>
             ))
           ) : (
@@ -93,6 +121,7 @@ function Groups() {
             <th>Group ID</th>
             <th>Name</th>
             <th>Is Active</th>
+            <th>Leave</th>
           </tr>
         </thead>
         <tbody>
@@ -102,6 +131,8 @@ function Groups() {
                 <td>{group.id}</td>
                 <td>{group.name}</td>
                 <td>{group.isActive ? "✅ Active" : "❌ Inactive"}</td>
+                <td>
+                  <button className="delete-btn"  onClick={()=>handleLeaveGroup(group.id)} style={{backgroundColor:"#8B0000"}}>Leave</button> </td>
               </tr>
             ))
           ) : (

@@ -88,25 +88,25 @@ const navigate=useNavigate();
                 <Form >
                   <FormGroup className='form-group'>
                     <Label for="name">Name</Label>
-                    <Field name="name" as={Input} type="text" id="name" className="form-input"/>
+                    <Field name="name" as={Input} type="text" id="name" className="form-input"/> <br/>
                     <ErrorMessage name="name" component="div" className="text-danger small" />
                   </FormGroup>
 
                   <FormGroup className='form-group'>
                     <Label for="email">Email</Label>
-                    <Field name="email" as={Input} type="email" id="email" className="form-input"/>
+                    <Field name="email" as={Input} type="email" id="email" className="form-input"/>  <br/>
                     <ErrorMessage name="email" component="div" className="text-danger small" />
                   </FormGroup>
 
                   <FormGroup className='form-group'>
                     <Label for="password">Password</Label>
-                    <Field name="password" as={Input} type="password" id="password" className="form-input"/>
+                    <Field name="password" as={Input} type="password" id="password" className="form-input"/>  <br/>
                     <ErrorMessage name="password" component="div" className="text-danger small" />
                   </FormGroup>
 
                   <FormGroup className='form-group'>
                     <Label for="confirmPassword">Confirm Password</Label>
-                    <Field name="confirmPassword" as={Input} type="password" id="confirmPassword" className="form-input"/>
+                    <Field name="confirmPassword" as={Input} type="password" id="confirmPassword" className="form-input"/>  <br/>
                     <ErrorMessage name="confirmPassword" component="div" className="text-danger small" />
                   </FormGroup>
 

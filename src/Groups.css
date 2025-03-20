@@ -60,8 +60,8 @@ tr:nth-child(even) {
   background-color: #2980b9;
 }
 
-/* Modal Styling */
-.modal-overlay {
+
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -128,4 +128,4 @@ tr:nth-child(even) {
 
 .send-btn:hover, .close-btn:hover {
   opacity: 0.8;
-}
+} */

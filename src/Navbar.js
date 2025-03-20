@@ -68,6 +68,11 @@ const Navbar = () => {
                 Invitations
               </Link>
             </li>
+             <li className="nav-item">
+              <Link className="nav-link" to="/expenseTracker" style={{color:"darkblue"}}>
+                ExpenseTracker
+              </Link>
+            </li>
 
             {/* If user is logged in, show user name and logout */}
             {user?.id ? (
