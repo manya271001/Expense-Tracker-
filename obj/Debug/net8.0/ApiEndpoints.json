@@ -58,6 +58,86 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ExpenseController",
+    "Method": "AddExpense",
+    "RelativePath": "api/expenses/addExpense",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "server.DTOs.AddExpenseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseController",
+    "Method": "GetExpensesByGroup",
+    "RelativePath": "api/expenses/group/{groupId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseController",
+    "Method": "GetTotalExpenseForGroup",
+    "RelativePath": "api/expenses/group/{groupId}/totalExpense",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseController",
+    "Method": "GetExpensesByUser",
+    "RelativePath": "api/expenses/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ExpenseController",
+    "Method": "GetUserTotalBalance",
+    "RelativePath": "api/expenses/user/{userId}/balances",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "server.Controllers.GroupController",
     "Method": "GetCreatedGroups",
     "RelativePath": "api/group/createdBy/{userId}",
@@ -112,6 +192,59 @@
   },
   {
     "ContainingType": "server.Controllers.GroupController",
+    "Method": "LeaveGroup",
+    "RelativePath": "api/group/leaveGroup/{groupId}/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
+    "Method": "GetGroupMemberCount",
+    "RelativePath": "api/group/memberCount/{groupId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
+    "Method": "GetGroupMembers",
+    "RelativePath": "api/group/members/{groupId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
     "Method": "GetUserGroups",
     "RelativePath": "api/group/userGroups/{userId}",
     "HttpMethod": "GET",
@@ -130,6 +263,22 @@
     "ContainingType": "server.Controllers.GroupController",
     "Method": "GetUserGroupsWithDetails",
     "RelativePath": "api/group/userGroups/details/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "server.Controllers.GroupController",
+    "Method": "GetUserGroupMemberCounts",
+    "RelativePath": "api/group/userGroups/memberCounts/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using server.Data;
 
@@ -11,9 +12,11 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(FullStackDbContext))]
-    partial class FullStackDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250319034544_addedBalance")]
+    partial class addedBalance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,9 +170,6 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("HasSetup")
                         .HasColumnType("bit");
 
@@ -219,31 +219,6 @@ namespace server.Migrations
                     b.HasIndex("NewUserId");
 
                     b.ToTable("Settlements");
-                });
-
-            modelBuilder.Entity("server.Models.UserBalance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("TotalLent")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalOwed")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("UserBalances");
                 });
 
             modelBuilder.Entity("server.Models.UserGroup", b =>
@@ -346,17 +321,6 @@ namespace server.Migrations
                     b.Navigation("Group");
                 });
 
-            modelBuilder.Entity("server.Models.UserBalance", b =>
-                {
-                    b.HasOne("server.Models.NewUser", "User")
-                        .WithOne("Balance")
-                        .HasForeignKey("server.Models.UserBalance", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("server.Models.UserGroup", b =>
                 {
                     b.HasOne("server.Models.Group", "Group")
@@ -389,9 +353,6 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.NewUser", b =>
                 {
-                    b.Navigation("Balance")
-                        .IsRequired();
-
                     b.Navigation("Expenses");
 
                     b.Navigation("Invitations");

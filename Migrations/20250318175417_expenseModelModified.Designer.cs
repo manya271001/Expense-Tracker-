@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using server.Data;
 
@@ -11,9 +12,11 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(FullStackDbContext))]
-    partial class FullStackDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250318175417_expenseModelModified")]
+    partial class expenseModelModified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,37 +55,6 @@ namespace server.Migrations
                     b.HasIndex("PaidBy");
 
                     b.ToTable("Expenses");
-                });
-
-            modelBuilder.Entity("PaymentFlow", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("PayeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PayerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SettlementId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PayeeId");
-
-                    b.HasIndex("PayerId");
-
-                    b.HasIndex("SettlementId");
-
-                    b.ToTable("PaymentFlows");
                 });
 
             modelBuilder.Entity("server.Models.Group", b =>
@@ -165,10 +137,7 @@ namespace server.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("HasSetup")
                         .HasColumnType("bit");
@@ -189,61 +158,10 @@ namespace server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewUsers");
-                });
-
-            modelBuilder.Entity("server.Models.Settlement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsSettled")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("NewUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SettledAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("NewUserId");
-
-                    b.ToTable("Settlements");
-                });
-
-            modelBuilder.Entity("server.Models.UserBalance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("TotalLent")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalOwed")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
+                    b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("UserBalances");
+                    b.ToTable("NewUsers");
                 });
 
             modelBuilder.Entity("server.Models.UserGroup", b =>
@@ -255,9 +173,6 @@ namespace server.Migrations
                     b.Property<int>("GroupId")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("UserId", "GroupId");
 
@@ -285,33 +200,6 @@ namespace server.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PaymentFlow", b =>
-                {
-                    b.HasOne("server.Models.NewUser", "Payee")
-                        .WithMany("ReceivedPaymentFlows")
-                        .HasForeignKey("PayeeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("server.Models.NewUser", "Payer")
-                        .WithMany("PaidPaymentFlows")
-                        .HasForeignKey("PayerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("server.Models.Settlement", "Settlement")
-                        .WithMany("PaymentFlows")
-                        .HasForeignKey("SettlementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Payee");
-
-                    b.Navigation("Payer");
-
-                    b.Navigation("Settlement");
-                });
-
             modelBuilder.Entity("server.Models.Invitation", b =>
                 {
                     b.HasOne("server.Models.Group", "Group")
@@ -327,32 +215,6 @@ namespace server.Migrations
                         .IsRequired();
 
                     b.Navigation("Group");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("server.Models.Settlement", b =>
-                {
-                    b.HasOne("server.Models.Group", "Group")
-                        .WithMany("Settlements")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("server.Models.NewUser", null)
-                        .WithMany("Settlements")
-                        .HasForeignKey("NewUserId");
-
-                    b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("server.Models.UserBalance", b =>
-                {
-                    b.HasOne("server.Models.NewUser", "User")
-                        .WithOne("Balance")
-                        .HasForeignKey("server.Models.UserBalance", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -383,29 +245,13 @@ namespace server.Migrations
                     b.Navigation("Invitations");
 
                     b.Navigation("Members");
-
-                    b.Navigation("Settlements");
                 });
 
             modelBuilder.Entity("server.Models.NewUser", b =>
                 {
-                    b.Navigation("Balance")
-                        .IsRequired();
-
                     b.Navigation("Expenses");
 
                     b.Navigation("Invitations");
-
-                    b.Navigation("PaidPaymentFlows");
-
-                    b.Navigation("ReceivedPaymentFlows");
-
-                    b.Navigation("Settlements");
-                });
-
-            modelBuilder.Entity("server.Models.Settlement", b =>
-                {
-                    b.Navigation("PaymentFlows");
                 });
 #pragma warning restore 612, 618
         }

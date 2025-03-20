@@ -33,5 +33,11 @@ namespace server.Models
 
         [JsonIgnore]
         public List<Invitation> Invitations { get; set; } = new List<Invitation>();
+
+        [JsonIgnore]
+        public ICollection<Expense> Expenses { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Settlement> Settlements { get; set; } = new List<Settlement>();
     }
 }

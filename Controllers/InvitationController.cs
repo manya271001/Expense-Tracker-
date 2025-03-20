@@ -76,12 +76,32 @@ namespace server.Controllers
         public async Task<IActionResult> GetPendingInvitations(int userId)
         {
             var invitations = await _context.Invitations
-                           .Where(i => i.InvitedUserId == userId && i.Status == "Pending")
-                           .Include(i => i.Group)
-                           .ToListAsync();
+                .Where(i => i.InvitedUserId == userId && i.Status == "Pending")
+                .Select(i => new
+                {
+                    i.Id,
+                    i.GroupId,
+                    GroupName = i.Group.Name,
+
+                    // Fetching group creator details
+                    CreatedBy = i.Group.CreatedBy,
+                    CreatedByName = _context.NewUsers
+                        .Where(u => u.Id == i.Group.CreatedBy)
+                        .Select(u => u.Name)
+                        .FirstOrDefault(),
+
+                    // Fetching invited user details
+                    InvitedUserId = i.InvitedUserId,
+                    InvitedUserName = i.Name,
+
+                    i.CreatedAt
+                })
+                .ToListAsync();
 
             return Ok(invitations);
         }
+
+
 
         // ✅ Respond to Invitation (Accept/Reject)
         [HttpPost("respond")]

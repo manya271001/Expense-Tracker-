@@ -17,5 +17,6 @@ namespace server.Models
 
         [JsonIgnore]
         public  Group Group { get; set; }
+        public decimal Balance { get; internal set; }
     }
 }
